@@ -1,6 +1,10 @@
 Revision history for Lingua-PT-Abbrev
 
+0.02    Sat Oct  9 20:23 2004
+	- Basic code to handle a custom dictionary;
+	- Basic code to handle a session dictionary;
+
 0.01    Tue Oct  5 15:20 2004
-        Basic code and documentation
-	Very basic list of abbreviations
+        - Basic code and documentation
+	- Very basic list of abbreviations
 

@@ -9,11 +9,11 @@ Lingua::PT::Abbrev - An abbreviations dictionary manager for NLP
 
 =head1 VERSION
 
-Version 0.01
+Version 0.02
 
 =cut
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 =head1 SYNOPSIS
 
@@ -24,6 +24,10 @@ NLP processing.
    use Lingua::PT::Abbrev;
 
    my $dic = Lingua::PT::Abbrev->new;
+
+   my $exp = $dic -> expand("sr");
+
+   $text = $dic -> text_expand($text);
 
 =head1 FUNCTIONS
 
@@ -62,12 +66,14 @@ sub _load_dictionary {
     while(<C>) {
       chomp;
       ($a,$b) = split /\s+/, lc;
-      $self->{dic}{$a} = $b;
+      $self->{cdic}{$a} = $b;
     }
     close C;
   } else {
+    seek DATA, 0, 0;
     while(<DATA>) {
       chomp;
+      next if m!^\s*$!;
       ($a,$b) = split /\s+/, lc;
       $self->{dic}{$a} = $b;
     }
@@ -87,11 +93,23 @@ sub expand {
   my $self = shift;
   my $abbrev = lc(shift);
   $abbrev =~ s!\.$!!;
-  if (exists($self->{dic}{$abbrev})) {
-    return $self->{dic}{$abbrev}
-  } else {
-    return undef
-  }
+  return $self->_expand($abbrev) || undef;
+}
+
+sub _exists {
+  my $self = shift;
+  my $word = shift;
+  return exists($self->{dic}{$word}) or
+    exists($self->{cdic}{$word}) or
+      exists($self->{sdic}{$word})
+}
+
+sub _expand {
+  my $self = shift;
+  my $word = shift;
+  return $self->{sdic}{$word} ||
+    $self->{cdic}{$word} ||
+      $self->{dic}{$word};
 }
 
 =head2 text_expand
@@ -105,10 +123,49 @@ sub text_expand {
   my $text = shift;
 
   $text =~ s{((\w+)\.)}{
-    exists($self->{dic}{lc($2)})?$self->{dic}{lc($2)}:$1
+    $self->_expand(lc($2))||$1
   }eg;
 
   return $text;
+}
+
+=head2 add
+
+Use this method to add an abbreviation to your current dictionary.
+
+=cut
+
+sub add {
+  my ($self,$abr,$exp) = @_;
+  return undef unless $abr and $exp;
+  $self->{cdic}{lc($abr)} = lc($exp);
+}
+
+=head2 session_add
+
+Use this method to add an abbreviation to your session dictionary.
+
+=cut
+
+sub session_add {
+  my ($self,$abr,$exp) = @_;
+  return undef unless $abr and $exp;
+  $self->{sdic}{lc($abr)} = lc($exp);
+}
+
+=head2 save
+
+This method saves the custom dictionary
+
+=cut
+
+sub save {
+  my $self = shift;
+  open DIC, ">$self->{custom}" or die;
+  for (keys %{$self->{cdic}}) {
+    print DIC "$_ $self->{cdic}{$_}\n";
+  }
+  close DIC;
 }
 
 =head1 AUTHOR
