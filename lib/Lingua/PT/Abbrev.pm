@@ -9,11 +9,11 @@ Lingua::PT::Abbrev - An abbreviations dictionary manager for NLP
 
 =head1 VERSION
 
-Version 0.02
+Version 0.03
 
 =cut
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 =head1 SYNOPSIS
 
@@ -65,6 +65,7 @@ sub _load_dictionary {
     open C, $file or die;
     while(<C>) {
       chomp;
+      next if m!^\s*$!;
       ($a,$b) = split /\s+/, lc;
       $self->{cdic}{$a} = $b;
     }
