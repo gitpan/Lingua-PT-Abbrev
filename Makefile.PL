@@ -21,7 +21,7 @@ package MY;
 
 sub postamble {
       return <<"EOF";
-database: pm_to_blib
+database: pm_to_blib data/abbrev.dat
 \tperl ./data/cpdata.pl
 \t\$(NOECHO) \$(TOUCH) \$@
 

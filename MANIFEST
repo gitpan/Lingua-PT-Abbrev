@@ -9,3 +9,4 @@ t/pod-coverage.t
 t/pod.t
 data/abbrev.dat
 data/cpdata.pl
+t/04.regexp.t

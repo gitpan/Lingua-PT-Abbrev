@@ -9,11 +9,15 @@ Lingua::PT::Abbrev - An abbreviations dictionary manager for NLP
 
 =head1 VERSION
 
-Version 0.04
+Version 0.05
 
 =cut
 
-our $VERSION = '0.04';
+our $VERSION = '0.05';
+
+#  dic => system dict
+# cdic => custom dict
+# sdic => session dict
 
 =head1 SYNOPSIS
 
@@ -169,6 +173,27 @@ sub save {
     print DIC "$_ $self->{cdic}{$_}\n";
   }
   close DIC;
+}
+
+
+=head2 regexp
+
+This method returns a regular expression matching all abbreviations.
+Pass as option an hash table for configuration.
+
+The key C<<nodot>> is used to define a regular expression not
+containing the final dot.
+
+=cut
+
+sub regexp {
+  my $self = shift;
+  my %conf = @_;
+  if ($conf{nodot}) {
+    return "(?:".join("|",keys %{$self->{dic}}, keys %{$self->{cdic}}, keys %{$self->{sdic}}).")";
+  } else {
+    return "(?:".join("|",keys %{$self->{dic}}, keys %{$self->{cdic}}, keys %{$self->{sdic}}).")\\.";
+  }
 }
 
 
