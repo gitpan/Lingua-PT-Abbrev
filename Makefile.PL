@@ -14,3 +14,34 @@ WriteMakefile(
     dist                => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
     clean               => { FILES => 'Lingua-PT-Abbrev-*' },
 );
+
+
+
+package MY;
+
+sub postamble {
+      return <<"EOF";
+database: pm_to_blib
+\tperl ./data/cpdata.pl
+\t\$(NOECHO) \$(TOUCH) \$@
+
+clean_database:
+\t\$(NOECHO) \$(RM_F) database
+
+EOF
+}
+
+sub top_targets {
+    my $class = shift;
+    my $makefragment = $class->SUPER::top_targets(@_);
+    $makefragment =~ s/^(pure_all ::)/$1 database/m;
+    return $makefragment;
+}
+
+sub clean {
+    my $class = shift;
+    my $makefragment = $class->SUPER::clean(@_);
+    $makefragment =~ s/^(clean ::)/$1 clean_database/m;
+    return $makefragment;
+}
+

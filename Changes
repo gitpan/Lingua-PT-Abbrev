@@ -1,5 +1,9 @@
 Revision history for Lingua-PT-Abbrev
 
+0.04    Mon Nov 08 19:45 2004
+	- Moved abbreviation database to separate file;
+	- Added instalation procedure to abbreviation database;
+
 0.03    Fri Oct 22 15:40 2004
 	- Moved from Module::Builder to ExtUtils::MakeMaker;
 

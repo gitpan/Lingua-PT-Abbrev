@@ -9,11 +9,11 @@ Lingua::PT::Abbrev - An abbreviations dictionary manager for NLP
 
 =head1 VERSION
 
-Version 0.03
+Version 0.04
 
 =cut
 
-our $VERSION = '0.03';
+our $VERSION = '0.04';
 
 =head1 SYNOPSIS
 
@@ -71,13 +71,15 @@ sub _load_dictionary {
     }
     close C;
   } else {
-    seek DATA, 0, 0;
-    while(<DATA>) {
+    my $f = _find_file();
+    open D, $f or die "Cannot open file $f: $!\n";
+    while(<D>) {
       chomp;
       next if m!^\s*$!;
       ($a,$b) = split /\s+/, lc;
       $self->{dic}{$a} = $b;
     }
+    close D;
   }
 }
 
@@ -169,6 +171,12 @@ sub save {
   close DIC;
 }
 
+
+sub _find_file {
+    my @files = grep { -e $_ } map { "$_/Lingua/PT/Abbrev/abbrev.dat" } @INC;
+    return $files[0];
+}
+
 =head1 AUTHOR
 
 Alberto Simões, C<< <ambs@cpan.org> >>
@@ -193,17 +201,3 @@ under the same terms as Perl itself.
 
 1; # End of Lingua::PT::Abbrev
 
-__DATA__
-dr doutor
-dra doutora
-drs doutores
-dras doutoras
-etc etc.
-prof professor
-profa professora
-profs professores
-profas professoras
-séc século
-av avenida
-sr senhor
-sra senhora
