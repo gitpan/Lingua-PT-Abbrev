@@ -1,0 +1,11 @@
+Build.PL
+Changes
+MANIFEST
+META.yml # Will be created by "make dist"
+README
+lib/Lingua/PT/Abbrev.pm
+t/00.load.t
+t/pod-coverage.t
+t/pod.t
+t/01.dict.t
+t/02.text.t

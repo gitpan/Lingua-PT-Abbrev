@@ -1,0 +1,23 @@
+Lingua-PT-Abbrev
+
+This module handles abbreviations for the Portuguese language. It
+includes a default dictionary, and handles a user custom dictionary.
+
+
+INSTALLATION
+
+To install this module, run the following commands:
+
+    perl Build.PL
+    ./Build
+    ./Build test
+    ./Build install
+
+
+
+COPYRIGHT AND LICENCE
+
+xCopyright (C) 2004 Alberto Simões
+
+This library is free software; you can redistribute it and/or modify
+it under the same terms as Perl itself.

@@ -1,0 +1,13 @@
+--- #YAML:1.0
+name: Lingua-PT-Abbrev
+version: 0.01
+author: Alberto Simões <ambs@cpan.org>
+abstract: An abbreviations dictionary manager for NLP
+license: perl
+requires:
+  Test::More: 0
+provides:
+  Lingua::PT::Abbrev:
+    file: lib/Lingua/PT/Abbrev.pm
+    version: 0.01
+generated_by: Module::Build version 0.25
