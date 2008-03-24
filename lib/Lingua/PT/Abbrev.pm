@@ -9,21 +9,17 @@ Lingua::PT::Abbrev - An abbreviations dictionary manager for NLP
 
 =head1 VERSION
 
-Version 0.05
+Version 0.06
 
 =cut
 
-our $VERSION = '0.05';
+our $VERSION = '0.06';
 
 #  dic => system dict
 # cdic => custom dict
 # sdic => session dict
 
 =head1 SYNOPSIS
-
-This module handles a built-in abbreviations dictionary, and a user
-customized abbreviations dictionary. It provides handy functions for
-NLP processing.
 
    use Lingua::PT::Abbrev;
 
@@ -32,6 +28,12 @@ NLP processing.
    my $exp = $dic -> expand("sr");
 
    $text = $dic -> text_expand($text);
+
+=head1 ABSTRACT
+
+This module handles a built-in abbreviations dictionary, and a user
+customized abbreviations dictionary. It provides handy functions for
+NLP processing.
 
 =head1 FUNCTIONS
 
@@ -79,6 +81,7 @@ sub _load_dictionary {
     open D, $f or die "Cannot open file $f: $!\n";
     while(<D>) {
       chomp;
+      s/\s*#.*//;   # delete comments
       next if m!^\s*$!;
       ($a,$b) = split /\s+/, lc;
       $self->{dic}{$a} = $b;
@@ -140,6 +143,8 @@ sub text_expand {
 
 Use this method to add an abbreviation to your current dictionary.
 
+    $abrev -> add( "dr" => "Doutor" );
+
 =cut
 
 sub add {
@@ -151,6 +156,8 @@ sub add {
 =head2 session_add
 
 Use this method to add an abbreviation to your session dictionary.
+
+    $abrev -> session_add( "dr" => "Doutor" );
 
 =cut
 
@@ -190,9 +197,11 @@ sub regexp {
   my $self = shift;
   my %conf = @_;
   if ($conf{nodot}) {
-    return "(?:".join("|",keys %{$self->{dic}}, keys %{$self->{cdic}}, keys %{$self->{sdic}}).")";
+    my $re = "(?:".join("|",keys %{$self->{dic}}, keys %{$self->{cdic}}, keys %{$self->{sdic}}).")";
+    return qr/$re/i;
   } else {
-    return "(?:".join("|",keys %{$self->{dic}}, keys %{$self->{cdic}}, keys %{$self->{sdic}}).")\\.";
+    my $re = "(?:".join("|",keys %{$self->{dic}}, keys %{$self->{cdic}}, keys %{$self->{sdic}}).")\\.";
+    return qr/$re/i;
   }
 }
 
@@ -213,11 +222,9 @@ C<bug-lingua-pt-abbrev@rt.cpan.org>, or through the web interface at
 L<http://rt.cpan.org>.  I will be notified, and then you'll automatically
 be notified of progress on your bug as I make changes.
 
-=head1 ACKNOWLEDGEMENTS
-
 =head1 COPYRIGHT & LICENSE
 
-Copyright 2004 Alberto Simões, All Rights Reserved.
+Copyright 2004-2005 Alberto Simões, All Rights Reserved.
 
 This program is free software; you can redistribute it and/or modify it
 under the same terms as Perl itself.

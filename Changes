@@ -1,5 +1,9 @@
 Revision history for Lingua-PT-Abbrev
 
+0.06	Mon Mar 24 22:13 2008
+	- Added a README File;
+	- Added abbreviations;
+
 0.05    Tue Nov 09 19:35 2004
 	- Added method to get regular expression of abbrevs;
 
