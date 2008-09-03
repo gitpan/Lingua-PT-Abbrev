@@ -1,11 +1,11 @@
 --- #YAML:1.0
 name:                Lingua-PT-Abbrev
-version:             0.06
+version:             0.07
 abstract:            An abbreviations dictionary manager for NLP
 license:             ~
 author:              
-    - Alberto Simões <ambs@cpan.org>
-generated_by:        ExtUtils::MakeMaker version 6.43_01
+    - Alberto Simoes <ambs@cpan.org>
+generated_by:        ExtUtils::MakeMaker version 6.44
 distribution_type:   module
 requires:     
     Test::More:                    0

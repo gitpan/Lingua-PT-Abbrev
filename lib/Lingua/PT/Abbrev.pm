@@ -13,7 +13,7 @@ Version 0.06
 
 =cut
 
-our $VERSION = '0.06';
+our $VERSION = '0.07';
 
 #  dic => system dict
 # cdic => custom dict

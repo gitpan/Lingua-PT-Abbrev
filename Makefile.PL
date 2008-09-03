@@ -5,7 +5,7 @@ use ExtUtils::MakeMaker;
 
 WriteMakefile(
     NAME                => 'Lingua::PT::Abbrev',
-    AUTHOR              => 'Alberto Simões <ambs@cpan.org>',
+    AUTHOR              => 'Alberto Simoes <ambs@cpan.org>',
     VERSION_FROM        => 'lib/Lingua/PT/Abbrev.pm',
     ABSTRACT_FROM       => 'lib/Lingua/PT/Abbrev.pm',
     PL_FILES            => {},
