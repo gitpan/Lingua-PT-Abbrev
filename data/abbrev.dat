@@ -17,6 +17,8 @@ srª senhora
 sras senhoras
 arq arquitecto
 pe padre
+fr frei
+mons monsenhor
 exmo excelentíssimo
 exmos excelentíssimos
 exma excelentíssima
@@ -74,6 +76,7 @@ ed editor
 eds editores
 pg página
 pág página
+pag página
 págs páginas
 pp páginas
 obs observações
@@ -99,3 +102,7 @@ hab habitação
 org organismos
 orgs organismos
 cf confrontar  # confrontar com
+cfr confrontar # confrontar com
+dir direita
+esq esquerda
+def definição

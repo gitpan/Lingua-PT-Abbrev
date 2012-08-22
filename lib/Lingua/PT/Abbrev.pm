@@ -3,17 +3,19 @@ package Lingua::PT::Abbrev;
 use warnings;
 use strict;
 
+=encoding ISO-8859-1
+
 =head1 NAME
 
 Lingua::PT::Abbrev - An abbreviations dictionary manager for NLP
 
 =head1 VERSION
 
-Version 0.06
+Version 0.08
 
 =cut
 
-our $VERSION = '0.07';
+our $VERSION = '0.08';
 
 #  dic => system dict
 # cdic => custom dict
