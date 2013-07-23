@@ -1,5 +1,8 @@
 Revision history for Lingua-PT-Abbrev
 
+0.09    Tue Jul 23 18:17:38 WEST 2013
+        - Fix low precedence or (thanks Reini Urban!)
+
 0.08    August 22, 2012
         - Proper encoding in POD file.
 

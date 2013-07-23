@@ -11,11 +11,11 @@ Lingua::PT::Abbrev - An abbreviations dictionary manager for NLP
 
 =head1 VERSION
 
-Version 0.08
+Version 0.09
 
 =cut
 
-our $VERSION = '0.08';
+our $VERSION = '0.09';
 
 #  dic => system dict
 # cdic => custom dict
@@ -111,8 +111,8 @@ sub expand {
 sub _exists {
   my $self = shift;
   my $word = shift;
-  return exists($self->{dic}{$word}) or
-    exists($self->{cdic}{$word}) or
+  return exists($self->{dic}{$word}) ||
+    exists($self->{cdic}{$word}) ||
       exists($self->{sdic}{$word})
 }
 
