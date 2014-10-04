@@ -11,11 +11,11 @@ Lingua::PT::Abbrev - An abbreviations dictionary manager for NLP
 
 =head1 VERSION
 
-Version 0.09
+Version 0.10
 
 =cut
 
-our $VERSION = '0.09';
+our $VERSION = '0.10';
 
 #  dic => system dict
 # cdic => custom dict
@@ -68,6 +68,8 @@ sub new {
 sub _load_dictionary {
   my $self = shift;
   my $file = shift || undef;
+
+  local $_;
 
   if ($file) {
     open C, $file or die;

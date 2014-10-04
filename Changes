@@ -1,5 +1,8 @@
 Revision history for Lingua-PT-Abbrev
 
+0.10    Sat Oct  4 16:33:52 WEST 2014
+        - Localize $_
+
 0.09    Tue Jul 23 18:17:38 WEST 2013
         - Fix low precedence or (thanks Reini Urban!)
 
